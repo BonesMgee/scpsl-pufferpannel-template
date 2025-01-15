@@ -1,0 +1,56 @@
+{
+  "name": "scpsl_exiled",
+  "display": "SCP:SL With Exiled",
+  "type": "scpsl",
+  "install": [
+    {
+      "appId": "996560",
+      "type": "steamgamedl"
+    },
+    {
+      "commands": [
+        "chmod +rwx SCPSL.x86_64 LocalAdmin"
+      ],
+      "type": "command"
+    },
+    {
+      "commands": [
+        "wget https://github.com/ExMod-Team/EXILED/releases/download/v${exiled_version}/Exiled.Installer-Linux",
+        "chmod +rwx Exiled.Installer-Linux",
+        "./Exiled.Installer-Linux --appdata ./.config --exiled ./.config"
+      ],
+      "type": "command"
+    }
+  ],
+  "run": {
+    "stop": "stop",
+    "command": "./LocalAdmin ${server_port}",
+    "workingDirectory": "",
+    "pre": [],
+    "post": [],
+    "environmentVars": {}
+  },
+  "data": {
+    "exiled_version": {
+      "type": "string",
+      "display": "Exiled Version",
+      "required": true,
+      "value": "9.3.0",
+      "userEdit": true
+    },
+    "server_port": {
+      "type": "integer",
+      "desc": "The port of the SCP:SL server (Default: 7777)",
+      "display": "Server Port",
+      "required": true,
+      "value": "7777",
+      "userEdit": true
+    }
+  },
+  "supportedEnvironments": [
+    {
+      "type": "standard"
+    }
+  ],
+  "requirements": {}
+}
